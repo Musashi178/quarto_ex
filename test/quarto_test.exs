@@ -1,5 +1,5 @@
-defmodule QuartoTest do
-  use ExUnit.Case
+defmodule QuartoTests do
+  use ExUnit.Case, async: true
   doctest Quarto
 
   test "the truth" do
