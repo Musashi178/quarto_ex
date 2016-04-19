@@ -72,41 +72,4 @@ defmodule QuartoTest.Board do
 
       assert stones_in_column_and_row === MapSet.new([Board.get_stone(board, row, column)])
   end
-
-  test "is_unique_attr? with unique attribute :top returns true", %{win_line: stones} do
-    assert Board.is_unique_attr?(stones, :top)
-  end
-
-  test "is_unique_attr? with non-unique attribute :color returns false", %{win_line: stones} do
-    refute Board.is_unique_attr?(stones, :color)
-  end
-
-  test "get_unique_attrs with win_line returns :top", %{win_line: stones} do
-    assert Board.get_unique_attrs(stones) == [:top]
-  end
-
-  test "get_unique_attrs with non_win_line returns empty list", %{non_win_line: stones} do
-    assert Board.get_unique_attrs(stones) == []
-  end
-
-  test "has_unique_attr? with win_line returns true", %{win_line: stones} do
-    assert Board.has_unique_attr?(stones)
-  end
-
-  test "has_unique_attr? with non_win_line returns false", %{non_win_line: stones} do
-    assert Board.has_unique_attr?(stones) === false
-  end
-
-  test "is_win_line? with win_line returns true", %{win_line: stones} do
-    assert Board.is_win_line?(stones)
-  end
-
-  test "is_win_line? with line were not all fields are set returns false", %{win_line: win_line} do
-    stones = List.replace_at(win_line, 1, nil)
-    assert Board.is_win_line?(stones) === false
-  end
-
-  test "is_win_line? with non_win_line returns false", %{non_win_line: stones} do
-    assert Board.is_win_line?(stones) === false
-  end
 end
