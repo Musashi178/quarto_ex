@@ -28,14 +28,14 @@ defmodule Quarto.Board do
         15
 
         iex> Quarto.Board.compute_index(5, 0)
-        ** (ArgumentError) row and column must be in range [1; 4]
+        ** (ArgumentError) row (actual: 5 and column (actual: 0) must be in range [1; 4]
     """
-  def compute_index(row, column) when row < 1 or row > 4 or column < 1 or column > 4 do
-      raise ArgumentError, message: "row and column must be in range [1; 4]"
+  def compute_index(row, column) when row in 1..4 and column in 1..4 do
+    ((row-1) * 4) + (column - 1)
   end
 
   def compute_index(row, column) do
-    ((row-1) * 4) + (column - 1)
+      raise ArgumentError, message: "row (actual: #{row} and column (actual: #{column}) must be in range [1; 4]"
   end
 
   def get_row(board, row_index) when row_index in 1..4 do
