@@ -6,9 +6,8 @@ defmodule QuartoTest.Board.WinState do
   alias Quarto.Board.WinState
 
   # "setup_all" is called once to setup the case before any test is run
- setup_all do
+  setup_all do
    initial_board = %Board{}
-   full_board = %Board{fields: Quarto.Stone.get_all_stones()}
 
    stone_a = %Quarto.Stone{size: :small, color: :white, shape: :round, top: :flat}
    stone_b = %Quarto.Stone{ stone_a | size: :large}
@@ -20,13 +19,8 @@ defmodule QuartoTest.Board.WinState do
    non_win_line = [stone_a, stone_b, stone_c, stone_e]
 
    # No metadata
-   {:ok, initial_board: initial_board, full_board: full_board, win_line: win_line, non_win_line: non_win_line }
- end
-
- setup do
-   random_stone = Quarto.Stone.get_all_stones() |> Enum.random
-   {:ok, random_stone: random_stone, random_column: 1, random_row: 2}
- end
+   {:ok, initial_board: initial_board, win_line: win_line, non_win_line: non_win_line }
+  end
 
   test "is_unique_attr? with unique attribute :top returns true", %{win_line: stones} do
     assert WinState.is_unique_attr?(stones, :top)

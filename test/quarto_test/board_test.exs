@@ -5,27 +5,18 @@ defmodule QuartoTest.Board do
   alias Quarto.Board
 
   # "setup_all" is called once to setup the case before any test is run
- setup_all do
+  setup_all do
    initial_board = %Board{}
    full_board = %Board{fields: Quarto.Stone.get_all_stones()}
 
-   stone_a = %Quarto.Stone{size: :small, color: :white, shape: :round, top: :flat}
-   stone_b = %Quarto.Stone{ stone_a | size: :large}
-   stone_c = %Quarto.Stone{ stone_a | color: :black}
-   stone_d = %Quarto.Stone{ stone_a | shape: :square}
-   stone_e = %Quarto.Stone{ stone_a | shape: :square, top: :round}
-
-   win_line = [stone_a, stone_b, stone_c, stone_d]
-   non_win_line = [stone_a, stone_b, stone_c, stone_e]
-
    # No metadata
-   {:ok, initial_board: initial_board, full_board: full_board, win_line: win_line, non_win_line: non_win_line }
- end
+   {:ok, initial_board: initial_board, full_board: full_board }
+  end
 
- setup do
+  setup do
    random_stone = Quarto.Stone.get_all_stones() |> Enum.random
    {:ok, random_stone: random_stone, random_column: 1, random_row: 2}
- end
+  end
 
   test "all fields of an initial board are nil" do
     assert Board.is_empty?(%Board{})
