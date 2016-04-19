@@ -3,7 +3,7 @@ defmodule Quarto.Board.WinState do
 
   def is_win_state?(board) do
     win_sets = Enum.concat([get_rows(board), get_columns(board), get_diagonals(board)])
-    Enum.any?(win_sets, Quarto.Board.WinState.is_win_line?/1)
+    Enum.any?(win_sets, &Quarto.Board.WinState.is_win_line?/1)
   end
 
   def is_win_line?(stone_line) do
