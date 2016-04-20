@@ -5,6 +5,14 @@ defmodule Quarto.Board do
     Enum.all?(fields, fn f -> f == nil end)
   end
 
+  def is_field_empty?(%Quarto.Board{} = board, row, column) do
+    get_stone(board, row, column) == nil
+  end
+
+  def is_stone_set?(%Quarto.Board{fields: fields}, stone) do
+    Enum.member?(fields, stone)
+  end
+
   def set_stone(%Quarto.Board{fields: fields} = board, row, column, %Quarto.Stone{} = stone) do
     index = compute_index(row, column)
     %Quarto.Board{board | fields: List.replace_at(fields, index, stone)}

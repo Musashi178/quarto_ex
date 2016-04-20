@@ -42,7 +42,6 @@ defmodule Quarto.Board.WinState do
     1..4 |> Enum.map(fn column_index -> Board.get_column(board, column_index) end)
   end
 
-
   def get_diagonals(board) do
     [:top_down, :bottom_up] |> Enum.map(fn d -> Board.get_diagonal(board, d) end)
   end
