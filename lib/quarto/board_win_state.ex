@@ -1,4 +1,17 @@
 defmodule Quarto.Board.WinState do
+  @moduledoc """
+  This module contains functions to check if the board has a win state or not.
+
+  The basic rule is simple: Have a set of four stones with any attribute being the same, for
+  example four black stones, or four small stones.
+
+  These sets are either rows, columns or diagonals, this means there must be a row with those
+  equal attributes, or a column, or a diagonals.
+
+  There is also an extended version which takes quadrants into account, but this is not implemented
+  yet
+  """
+
   alias Quarto.Board
 
   def is_win_state?(board) do

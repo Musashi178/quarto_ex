@@ -1,4 +1,9 @@
 defmodule Quarto.Board do
+  @moduledoc """
+  This module represents the quarto game board which is a 4 x 4 play field. The internal representation
+  is different from that, therefore the module also handles getting and setting stones and has some other
+  helper functions.
+  """
   defstruct fields: for _n <- 0..15, do: nil
 
   def is_empty?(%Quarto.Board{fields: fields}) do
@@ -39,7 +44,7 @@ defmodule Quarto.Board do
         ** (ArgumentError) row (actual: 5 and column (actual: 0) must be in range [1; 4]
     """
   def compute_index(row, column) when row in 1..4 and column in 1..4 do
-    ((row-1) * 4) + (column - 1)
+    ((row - 1) * 4) + (column - 1)
   end
 
   def compute_index(row, column) do

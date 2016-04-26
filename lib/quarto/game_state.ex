@@ -45,15 +45,15 @@ defmodule Quarto.GameState do
   end
 
   defp update_board(state, row, column) do
-    %GameState{ state | board: Board.set_stone(state.board, row, column, state.stone_to_set)}
+    %GameState{state | board: Board.set_stone(state.board, row, column, state.stone_to_set)}
   end
 
   defp set_stone_to_set(state, stone) do
-    %GameState{ state | stone_to_set: stone}
+    %GameState{state | stone_to_set: stone}
   end
 
   defp switch_players(state) do
-    %GameState{ state | player: switch_player(state.player)}
+    %GameState{state | player: switch_player(state.player)}
   end
 
   defp switch_player(:one) do

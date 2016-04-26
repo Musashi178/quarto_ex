@@ -1,4 +1,10 @@
 defmodule Quarto.Move do
+  @moduledoc """
+  This module represents the moves in a Quarto game. A move in quarto is made of two steps, one setting
+  the already chosen stone to a position on the field (represented by row and column) and one chosing
+  a stone that the opponent has to set. There is only one exception that is the initial move where player one
+  only chooses a stone for player two to set.
+  """
   alias Quarto.{Move, Stone}
 
   defstruct stone: nil, row: nil, column: nil
