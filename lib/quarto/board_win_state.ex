@@ -9,7 +9,7 @@ defmodule Quarto.Board.WinState do
   equal attributes, or a column, or a diagonals.
 
   There is also an extended version which takes quadrants into account, but this is not implemented
-  yet
+  yet.
   """
 
   alias Quarto.Board

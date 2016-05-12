@@ -40,9 +40,9 @@ defmodule QuartoTest.GameState do
   test "apply_move with a non initial move and a non initial game state returns ok and the expected state", %{initial_game_state: initial_game_state, stone_a: stone_a, stone_b: stone_b} do
     initial_move = Move.new_initial_move(stone_a)
     next_move =  Move.new_move(1, 1, stone_b)
-    game_state = with game_state <- initial_game_state,
-                 {:ok, game_state} <- GameState.apply_move(game_state, initial_move),
-                 do: GameState.apply_move(game_state, next_move)
+
+    {:ok, game_state} = GameState.apply_move(initial_game_state, initial_move)
+    move_result = GameState.apply_move(game_state, next_move)
 
     expected_state = %GameState{
       board: %Quarto.Board{fields: [
@@ -53,6 +53,6 @@ defmodule QuartoTest.GameState do
       player: :one,
       stone_to_set: stone_b}
 
-    assert {:ok, expected_state} = game_state
+    assert {:ok, expected_state} == move_result
   end
 end

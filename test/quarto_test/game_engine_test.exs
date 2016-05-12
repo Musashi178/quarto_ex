@@ -5,8 +5,8 @@ defmodule QuartoTest.GameEngine do
   alias Quarto.GameEngine
 
   test "new game engine returns an initial game state" do
-    {:ok, game_engine} = GameEngine.start_link
-    
+    assert {:ok, _} = GameEngine.start_link
+
   end
 
 end
