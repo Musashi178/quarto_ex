@@ -13,7 +13,6 @@ defmodule Quarto.Board.WinState do
   """
 
   alias Quarto.Board
-  alias Quarto.Board.WinState
 
   def win_state?(board) do
     win_sets = Enum.concat([get_rows(board), get_columns(board), get_diagonals(board)])

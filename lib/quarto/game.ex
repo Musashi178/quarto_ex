@@ -47,13 +47,13 @@ defmodule Quarto.Game do
    cond do
      not row in 1..4 ->     {:error, "row must be in range 1..4"}
      not column in 1..4 ->  {:error, "column must be in range 1..4"}
-     not Board.field_empty?(state.board, row, column) -> {:error, "field must be empty"}
+     not Board.field_empty?(state.board, position) -> {:error, "field must be empty"}
      true -> {:ok, position}
    end
  end
 
- defp update_board(state, {row, column}) do
-   %GameState{state | board: Board.set_stone(state.board, row, column, state.stone_to_place), stone_to_place: nil}
+ defp update_board(state, position) do
+   %GameState{state | board: Board.set_stone(state.board, position, state.stone_to_place), stone_to_place: nil}
  end
 
  defp win_state?(state) do

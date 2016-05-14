@@ -17,7 +17,6 @@ defmodule QuartoTest.Game do
     |> Game.select_stone(stone_b)
     |> Game.place_stone({2,1})
 
-
   end
 
   test "selecting a stone on a new game makes this stone the one to place", %{stone_a: stone} do
@@ -30,7 +29,7 @@ defmodule QuartoTest.Game do
       |> Game.select_stone(stone)
       |> Game.place_stone({2,1})
 
-      assert Board.get_stone(game.data.board, 2, 1) === stone
+      assert Board.get_stone(game.data.board, {2, 1}) === stone
       assert game.data.stone_to_place === nil
   end
 
