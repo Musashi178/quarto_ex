@@ -6,15 +6,15 @@ defmodule Quarto.Board do
   """
   defstruct fields: for _n <- 0..15, do: nil
 
-  def is_empty?(%Quarto.Board{fields: fields}) do
+  def empty?(%Quarto.Board{fields: fields}) do
     Enum.all?(fields, fn f -> f == nil end)
   end
 
-  def is_field_empty?(%Quarto.Board{} = board, row, column) do
+  def field_empty?(%Quarto.Board{} = board, row, column) do
     get_stone(board, row, column) == nil
   end
 
-  def is_stone_set?(%Quarto.Board{fields: fields}, stone) do
+  def stone_set?(%Quarto.Board{fields: fields}, stone) do
     Enum.member?(fields, stone)
   end
 
@@ -52,18 +52,18 @@ defmodule Quarto.Board do
   end
 
   def get_row(board, row_index) when row_index in 1..4 do
-    1..4 |> Enum.map(fn column_index -> Quarto.Board.get_stone(board, row_index, column_index) end)
+    1..4 |> Enum.map(fn column_index -> get_stone(board, row_index, column_index) end)
   end
 
   def get_column(board, column_index) when column_index in 1..4 do
-    1..4 |> Enum.map(fn row_index -> Quarto.Board.get_stone(board, row_index, column_index) end)
+    1..4 |> Enum.map(fn row_index -> get_stone(board, row_index, column_index) end)
   end
 
   def get_diagonal(board, :top_down) do
-    1..4 |> Enum.map(fn index -> Quarto.Board.get_stone(board, index, index) end)
+    1..4 |> Enum.map(fn index -> get_stone(board, index, index) end)
   end
 
   def get_diagonal(board, :bottom_up) do
-    1..4 |> Enum.map(fn index -> Quarto.Board.get_stone(board, 5 - index, index) end)
+    1..4 |> Enum.map(fn index -> get_stone(board, 5 - index, index) end)
   end
 end

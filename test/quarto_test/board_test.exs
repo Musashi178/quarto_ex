@@ -19,12 +19,12 @@ defmodule QuartoTest.Board do
   end
 
   test "all fields of an initial board are nil" do
-    assert Board.is_empty?(%Board{})
+    assert Board.empty?(%Board{})
   end
 
   test "set_stone returns a non empty board", %{ initial_board: board, random_row: row, random_column: column, random_stone: stone } do
     result = Board.set_stone(board, row, column, stone)
-    refute Board.is_empty?(result)
+    refute Board.empty?(result)
   end
 
   test "set_stone returns a board containing the set stone", %{ initial_board: board, random_row: row, random_column: column, random_stone: stone } do

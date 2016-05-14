@@ -13,13 +13,14 @@ defmodule Quarto.Board.WinState do
   """
 
   alias Quarto.Board
+  alias Quarto.Board.WinState
 
-  def is_win_state?(board) do
+  def win_state?(board) do
     win_sets = Enum.concat([get_rows(board), get_columns(board), get_diagonals(board)])
-    Enum.any?(win_sets, &Quarto.Board.WinState.is_win_line?/1)
+    Enum.any?(win_sets, &win_line?/1)
   end
 
-  def is_win_line?(stone_line) do
+  def win_line?(stone_line) do
     cond do
       has_empty_field?(stone_line) -> false
       has_unique_attr?(stone_line) -> true
@@ -35,10 +36,10 @@ defmodule Quarto.Board.WinState do
     %Quarto.Stone{}
       |> Map.keys
       |> Enum.filter(fn k -> k != :__struct__ end)
-      |> Enum.filter(fn attr -> is_unique_attr?(stones, attr) end)
+      |> Enum.filter(fn attr -> unique_attr?(stones, attr) end)
   end
 
-  def is_unique_attr?(stones, attr) do
+  def unique_attr?(stones, attr) do
     num_different_attr = stones |> Enum.uniq_by(fn s -> Map.fetch!(s, attr) end) |> Enum.count
     num_different_attr == 1
   end
