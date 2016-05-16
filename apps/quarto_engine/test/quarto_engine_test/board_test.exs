@@ -1,20 +1,20 @@
-defmodule QuartoTest.Board do
+defmodule QuartoEngineTest.Board do
   use ExUnit.Case, async: true
-  doctest Quarto.Board
+  doctest QuartoEngine.Board
 
-  alias Quarto.Board
+  alias QuartoEngine.{Board, Stone}
 
   # "setup_all" is called once to setup the case before any test is run
   setup_all do
    initial_board = %Board{}
-   full_board = %Board{fields: Quarto.Stone.get_all_stones()}
+   full_board = %Board{fields: Stone.get_all_stones()}
 
    # No metadata
    {:ok, initial_board: initial_board, full_board: full_board }
   end
 
   setup do
-   random_stone = Quarto.Stone.get_all_stones() |> Enum.random
+   random_stone = Stone.get_all_stones() |> Enum.random
    {:ok, random_stone: random_stone, random_position: {1, 2}}
   end
 

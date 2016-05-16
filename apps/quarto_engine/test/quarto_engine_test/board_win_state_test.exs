@@ -1,19 +1,18 @@
-defmodule QuartoTest.Board.WinState do
+defmodule QuartoEngineTest.Board.WinState do
   use ExUnit.Case, async: true
-  doctest Quarto.Board.WinState
+  doctest QuartoEngine.Board.WinState
 
-  alias Quarto.Board
-  alias Quarto.Board.WinState
+  alias QuartoEngine.{Board, Stone, Board.WinState}
 
   # "setup_all" is called once to setup the case before any test is run
   setup_all do
    initial_board = %Board{}
 
-   stone_a = %Quarto.Stone{size: :small, color: :white, shape: :round, top: :flat}
-   stone_b = %Quarto.Stone{ stone_a | size: :large}
-   stone_c = %Quarto.Stone{ stone_a | color: :black}
-   stone_d = %Quarto.Stone{ stone_a | shape: :square}
-   stone_e = %Quarto.Stone{ stone_a | shape: :square, top: :round}
+   stone_a = %Stone{size: :small, color: :white, shape: :round, top: :flat}
+   stone_b = %Stone{ stone_a | size: :large}
+   stone_c = %Stone{ stone_a | color: :black}
+   stone_d = %Stone{ stone_a | shape: :square}
+   stone_e = %Stone{ stone_a | shape: :square, top: :round}
 
    win_line = [stone_a, stone_b, stone_c, stone_d]
    non_win_line = [stone_a, stone_b, stone_c, stone_e]

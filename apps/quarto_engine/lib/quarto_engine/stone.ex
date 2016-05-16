@@ -1,8 +1,12 @@
-defmodule Quarto.Stone do
+defmodule QuartoEngine.Stone do
   @moduledoc """
   This module represents a stone in the Quarto game with it's four different attributes (size, color, shape, top)
   and also contains helper functions, e.g. computing all stones available in the game
   """
+
+  alias QuartoEngine.{Stone}
+
+
   defstruct size: :small, color: :white, shape: :round, top: :flat
 
   @doc ~S"""
@@ -10,15 +14,15 @@ defmodule Quarto.Stone do
 
   ## Examples
 
-    iex> Quarto.Stone.get_all_stones() |> Enum.count
+    iex> QuartoEngine.Stone.get_all_stones() |> Enum.count
     16
 
-    iex> Quarto.Stone.get_all_stones() |> Enum.uniq |> Enum.count
+    iex> QuartoEngine.Stone.get_all_stones() |> Enum.uniq |> Enum.count
     16
   """
   def get_all_stones do
     for size <- [:small, :large], color <- [:black, :white], shape <- [:round, :square], top <- [:flat, :hole] do
-      %Quarto.Stone{size: size, color: color, shape: shape, top: top}
+      %Stone{size: size, color: color, shape: shape, top: top}
     end
   end
 
@@ -28,13 +32,13 @@ defmodule Quarto.Stone do
 
   ## Examples
 
-    iex> Quarto.Stone.stone_to_string(%Quarto.Stone{size: :small, color: :white, shape: :round, top: :flat})
+    iex> QuartoEngine.Stone.stone_to_string(%QuartoEngine.Stone{size: :small, color: :white, shape: :round, top: :flat})
     "swrf"
 
-    iex> Quarto.Stone.stone_to_string(%Quarto.Stone{size: :large, color: :black, shape: :square, top: :hole})
+    iex> QuartoEngine.Stone.stone_to_string(%QuartoEngine.Stone{size: :large, color: :black, shape: :square, top: :hole})
     "lbsh"
   """
-  def stone_to_string(%Quarto.Stone{size: size, color: color, shape: shape, top: top}) do
+  def stone_to_string(%Stone{size: size, color: color, shape: shape, top: top}) do
     [size, color, shape, top]
       |> Enum.map(&Atom.to_char_list/1)
       |> Enum.map(&hd/1)
@@ -46,15 +50,15 @@ defmodule Quarto.Stone do
 
   ## Examples
 
-    iex> Quarto.Stone.string_to_stone("SWrf")
-    (%Quarto.Stone{size: :small, color: :white, shape: :round, top: :flat})
+    iex> QuartoEngine.Stone.string_to_stone("SWrf")
+    (%QuartoEngine.Stone{size: :small, color: :white, shape: :round, top: :flat})
 
-    iex> Quarto.Stone.string_to_stone("lbsh")
-    %Quarto.Stone{size: :large, color: :black, shape: :square, top: :hole}
+    iex> QuartoEngine.Stone.string_to_stone("lbsh")
+    %QuartoEngine.Stone{size: :large, color: :black, shape: :square, top: :hole}
   """
   def string_to_stone(stone_string) when is_bitstring(stone_string) do
     lower_stone_string = String.downcase(stone_string)
-    %Quarto.Stone{size: nil, color: nil, shape: nil, top: nil}
+    %Stone{size: nil, color: nil, shape: nil, top: nil}
     |> extract_stone_size(lower_stone_string)
     |> extract_stone_color(lower_stone_string)
     |> extract_stone_shape(lower_stone_string)
@@ -67,7 +71,7 @@ defmodule Quarto.Stone do
       "l" -> :large
       "s" -> :small
     end
-    %Quarto.Stone{stone | size: size}
+    %Stone{stone | size: size}
   end
 
   defp extract_stone_color(stone, stone_string) do
@@ -75,7 +79,7 @@ defmodule Quarto.Stone do
       "b" -> :black
       "w" -> :white
     end
-    %Quarto.Stone{stone | color: color}
+    %Stone{stone | color: color}
   end
 
   defp extract_stone_shape(stone, stone_string) do
@@ -83,7 +87,7 @@ defmodule Quarto.Stone do
       "s" -> :square
       "r" -> :round
     end
-    %Quarto.Stone{stone | shape: shape}
+    %Stone{stone | shape: shape}
   end
 
   defp extract_stone_top(stone, stone_string) do
@@ -91,6 +95,6 @@ defmodule Quarto.Stone do
       "f" -> :flat
       "h" -> :hole
     end
-    %Quarto.Stone{stone | top: top}
+    %Stone{stone | top: top}
   end
 end

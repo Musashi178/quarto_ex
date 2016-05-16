@@ -1,5 +1,5 @@
-defmodule Quarto.GameState do
-  alias Quarto.Board
+defmodule QuartoEngine.GameState do
+  alias QuartoEngine.Board
 
   defstruct player: :one, board: %Board{}, stone_to_place: nil
 end
