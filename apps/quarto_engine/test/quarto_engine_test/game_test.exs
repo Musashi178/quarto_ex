@@ -6,7 +6,7 @@ defmodule QuartoEngineTest.Game do
 
   setup_all do
    stone_a = %Stone{size: :small, color: :white, shape: :round, top: :flat}
-   stone_b = %Stone{ stone_a | size: :large}
+   stone_b = %Stone{stone_a | size: :large}
    {:ok, stone_a: stone_a, stone_b: stone_b}
   end
 

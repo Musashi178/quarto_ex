@@ -18,7 +18,7 @@ defmodule QuartoEngineTest.Board.WinState do
    non_win_line = [stone_a, stone_b, stone_c, stone_e]
 
    # No metadata
-   {:ok, initial_board: initial_board, win_line: win_line, non_win_line: non_win_line }
+   {:ok, initial_board: initial_board, win_line: win_line, non_win_line: non_win_line}
   end
 
   test "unique_attr? with unique attribute :top returns true", %{win_line: stones} do
