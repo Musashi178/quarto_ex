@@ -9,10 +9,10 @@ defmodule QuartoEngineTest.Board.WinState do
    initial_board = %Board{}
 
    stone_a = %Stone{size: :small, color: :white, shape: :round, top: :flat}
-   stone_b = %Stone{ stone_a | size: :large}
-   stone_c = %Stone{ stone_a | color: :black}
-   stone_d = %Stone{ stone_a | shape: :square}
-   stone_e = %Stone{ stone_a | shape: :square, top: :round}
+   stone_b = %Stone{stone_a | size: :large}
+   stone_c = %Stone{stone_a | color: :black}
+   stone_d = %Stone{stone_a | shape: :square}
+   stone_e = %Stone{stone_a | shape: :square, top: :round}
 
    win_line = [stone_a, stone_b, stone_c, stone_d]
    non_win_line = [stone_a, stone_b, stone_c, stone_e]
