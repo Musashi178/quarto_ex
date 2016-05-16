@@ -5,7 +5,9 @@ defmodule Quarto.Mixfile do
     [apps_path: "apps",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps,
+     test_coverage: [tool: ExCoveralls]
+   ]
   end
 
   # Dependencies can be Hex packages:
@@ -22,7 +24,8 @@ defmodule Quarto.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:credo, "~> 0.3", only: [:dev, :test]}
+      {:credo, "~> 0.3", only: [:dev, :test]},
+      {:excoveralls, "~> 0.5", only: :test}
     ]
   end
 end
