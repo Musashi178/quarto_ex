@@ -29,10 +29,6 @@ defmodule QuartoEngine.Game do
  end
 
  defstate game_over do
-   defevent get_state do
-
-   end
-
  end
 
  defp validate_stone(state, stone) do
