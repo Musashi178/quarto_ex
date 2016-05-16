@@ -1,4 +1,4 @@
-defmodule QuartoEngine.Mixfile do
+defmodule Quarto.Engine.Mixfile do
   use Mix.Project
 
   def project do

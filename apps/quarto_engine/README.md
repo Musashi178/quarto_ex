@@ -1,4 +1,4 @@
-# QuartoEngine
+# Quarto.Engine
 
 **TODO: Add description**
 
