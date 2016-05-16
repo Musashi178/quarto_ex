@@ -1,5 +1,5 @@
-defmodule Quarto.Engine.Game do
-  alias Quarto.Engine.{Stone, Board, GameState, Board.WinState}
+defmodule QuartoEngine.Game do
+  alias QuartoEngine.{Stone, Board, GameState, Board.WinState}
 
   use Fsm, initial_state: :stone_selection, initial_data: %GameState{}
 
@@ -7,7 +7,7 @@ defmodule Quarto.Engine.Game do
    defevent select_stone(%Stone{} = stone), data: game_state do
      case validate_stone(game_state, stone) do
        {:ok, _} -> next_state(:stone_placement, %{game_state | stone_to_place: stone})
-       {:error, message} -> raise Quarto.Engine.InvalidMoveError, message
+       {:error, message} -> raise QuartoEngine.InvalidMoveError, message
      end
    end
  end
@@ -23,7 +23,7 @@ defmodule Quarto.Engine.Game do
            tie?(new_game_state)       -> next_state(:game_over, %{winner: nil, game_state: new_game_state})
            true                       -> next_state(:stone_selection, new_game_state)
          end
-       {:error, message} -> raise Quarto.Engine.InvalidMoveError, message
+       {:error, message} -> raise QuartoEngine.InvalidMoveError, message
      end
    end
  end

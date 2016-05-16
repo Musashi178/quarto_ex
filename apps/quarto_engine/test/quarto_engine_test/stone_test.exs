@@ -1,5 +1,5 @@
-defmodule Quarto.EngineTest.Stone do
+defmodule QuartoEngineTest.Stone do
   use ExUnit.Case, async: true
-  doctest Quarto.Engine.Stone
+  doctest QuartoEngine.Stone
 
 end

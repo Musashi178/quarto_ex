@@ -1,11 +1,11 @@
-defmodule Quarto.Engine.Board do
+defmodule QuartoEngine.Board do
   @moduledoc """
   This module represents the quarto game board which is a 4 x 4 play field. The internal representation
   is different from that, therefore the module also handles getting and setting stones and has some other
   helper functions.
   """
 
-  alias Quarto.Engine.{Board, Stone}
+  alias QuartoEngine.{Board, Stone}
 
   defstruct fields: for _n <- 0..15, do: nil
 
@@ -26,15 +26,15 @@ defmodule Quarto.Engine.Board do
 
   ## Examples
 
-    iex> board = %Quarto.Engine.Board{}
-    iex> stone = %Quarto.Engine.Stone{size: :small, color: :white, shape: :round, top: :flat}
-    iex> new_board = Quarto.Engine.Board.set_stone(board, {2, 4}, stone)
-    iex> Quarto.Engine.Board.stone_set?(new_board, stone)
+    iex> board = %QuartoEngine.Board{}
+    iex> stone = %QuartoEngine.Stone{size: :small, color: :white, shape: :round, top: :flat}
+    iex> new_board = QuartoEngine.Board.set_stone(board, {2, 4}, stone)
+    iex> QuartoEngine.Board.stone_set?(new_board, stone)
     true
 
-    iex> board = %Quarto.Engine.Board{}
-    iex> stone = %Quarto.Engine.Stone{size: :small, color: :white, shape: :round, top: :flat}
-    iex> Quarto.Engine.Board.stone_set?(board, stone)
+    iex> board = %QuartoEngine.Board{}
+    iex> stone = %QuartoEngine.Stone{size: :small, color: :white, shape: :round, top: :flat}
+    iex> QuartoEngine.Board.stone_set?(board, stone)
     false
   """
   def stone_set?(%Board{fields: fields}, stone) do
@@ -56,16 +56,16 @@ defmodule Quarto.Engine.Board do
 
   ## Examples
 
-    iex> Quarto.Engine.Board.compute_index({1, 1})
+    iex> QuartoEngine.Board.compute_index({1, 1})
     0
 
-    iex> Quarto.Engine.Board.compute_index({2, 3})
+    iex> QuartoEngine.Board.compute_index({2, 3})
     6
 
-    iex> Quarto.Engine.Board.compute_index({4, 4})
+    iex> QuartoEngine.Board.compute_index({4, 4})
     15
 
-    iex> Quarto.Engine.Board.compute_index({5, 0})
+    iex> QuartoEngine.Board.compute_index({5, 0})
     ** (ArgumentError) row (actual: 5 and column (actual: 0) must be in range [1; 4]
   """
   def compute_index({row, column}) when row in 1..4 and column in 1..4 do
