@@ -20,7 +20,8 @@ defmodule QuartoWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", QuartoWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", QuartoWeb do
+    pipe_through :api
+
+  end
 end

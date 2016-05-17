@@ -33,7 +33,7 @@ defmodule QuartoWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_quarto_web_key",
-    signing_salt: "4wkY6Dn2"
+    signing_salt: "kk+WkvY9"
 
   plug QuartoWeb.Router
 end

@@ -9,7 +9,7 @@ use Mix.Config
 config :quarto_web, QuartoWeb.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "cfVjGzeIjhEu6Vv1V6ujaB8PDZdp2BfKIfEj4PsGOWTJaTTPctfxCjPnWTExmsUq",
+  secret_key_base: "9VVUWjySm2NO1CKjCAtmUmu0OgKpGrUFn/xiC3n4XiwtOU5Pg5Lf4QOHpIacl7pT",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: QuartoWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
@@ -26,4 +26,4 @@ import_config "#{Mix.env}.exs"
 # Configure phoenix generators
 config :phoenix, :generators,
   migration: true,
-  binary_id: false
+  binary_id: true

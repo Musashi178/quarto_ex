@@ -15,8 +15,7 @@ defmodule QuartoWeb.Mixfile do
      start_permanent: Mix.env == :prod,
      aliases: aliases,
      deps: deps,
-     test_coverage: [tool: ExCoveralls]
-    ]
+     test_coverage: [tool: ExCoveralls]]
   end
 
   # Configuration for the OTP application.
