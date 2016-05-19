@@ -17,3 +17,7 @@ config :quarto_web, QuartoWeb.Repo,
   database: "quarto_web_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# limit rounds to not slow down test cases
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

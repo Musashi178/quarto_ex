@@ -6,7 +6,7 @@ defmodule QuartoWeb.Repo.Migrations.CreateUser do
       add :id, :binary_id, primary_key: true
       add :username, :string
       add :email, :string
-      add :crypted_password, :string
+      add :password_hash, :string
 
       timestamps
     end
