@@ -1,4 +1,4 @@
-defmodule QuartoWeb..GuardianSerializer do
+defmodule QuartoWeb.GuardianSerializer do
   @behaviour Guardian.Serializer
 
   alias QuartoWeb.Repo
