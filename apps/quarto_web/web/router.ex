@@ -19,6 +19,7 @@ defmodule QuartoWeb.Router do
     get "/", PageController, :index
 
     resources "/users", UserController
+    resources "/games", GameController
   end
 
   # Other scopes may use custom stacks.
