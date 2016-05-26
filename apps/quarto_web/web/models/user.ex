@@ -1,6 +1,8 @@
 defmodule QuartoWeb.User do
   use QuartoWeb.Web, :model
 
+  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
+
   schema "users" do
     field :username, :string
     field :email, :string
@@ -39,8 +41,9 @@ defmodule QuartoWeb.User do
 
   defp put_pass_hash(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: pass}} -> put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
+      %Ecto.Changeset{valid?: true, changes: %{password: pass}} -> put_change(changeset, :password_hash, hashpwsalt(pass))
       _ -> changeset
     end
   end
+
 end
