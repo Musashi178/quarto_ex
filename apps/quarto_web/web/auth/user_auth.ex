@@ -1,6 +1,7 @@
 defmodule QuartoWeb.UserAuth do
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
+  alias QuartoWeb.{Repo, User}
 
   def authenticate(email_or_username, password) do
     user = Repo.get_by(User, email: email_or_username) || Repo.get_by(User, username: email_or_username)
