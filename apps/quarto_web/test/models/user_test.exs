@@ -3,7 +3,7 @@ defmodule QuartoWeb.UserTest do
 
   alias QuartoWeb.User
 
-  @valid_attrs %{crypted_password: "some content", email: Faker.Internet.email, username: Faker.Internet.user_name}
+  @valid_attrs %{password_hash: "some content", email: Faker.Internet.email, username: Faker.Internet.user_name}
   @invalid_attrs %{}
 
   setup_all do
@@ -23,13 +23,13 @@ defmodule QuartoWeb.UserTest do
   end
 
   test "changeset with already used email address", %{existing_user: existing_user} do
-    new_user = %User{existing_user | crypted_password: "some other pw", username: Faker.Internet.user_name}
+    new_user = %User{existing_user | password_hash: "some other pw", username: Faker.Internet.user_name}
     changeset = User.changeset(new_user)
     refute changeset.valid?
   end
 
   test "changeset with already used username", %{existing_user: existing_user} do
-    new_user = %User{existing_user | crypted_password: "some other pw", email: Faker.Internet.email}
+    new_user = %User{existing_user | password_hash: "some other pw", email: Faker.Internet.email}
     changeset = User.changeset(new_user)
     refute changeset.valid?
   end

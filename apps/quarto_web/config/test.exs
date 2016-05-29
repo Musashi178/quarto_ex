@@ -21,3 +21,6 @@ config :quarto_web, QuartoWeb.Repo,
 # limit rounds to not slow down test cases
 config :comeonin, :bcrypt_log_rounds, 4
 config :comeonin, :pbkdf2_rounds, 1
+
+config :guardian, Guardian,
+    secret_key: "DPUr#m(P/Jf}W0h9Kz;eei1@y/)Q)zpC%gn4SD=PrZZ9DbB:7!"
