@@ -43,7 +43,8 @@ defmodule QuartoWeb.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:faker, "~> 0.6", only: :test},
-     {:comeonin, "~> 2.4"}]
+     {:comeonin, "~> 2.4"},
+     {:guardian, "~> 0.10.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

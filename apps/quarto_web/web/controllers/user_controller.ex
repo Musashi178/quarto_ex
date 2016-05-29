@@ -19,9 +19,10 @@ defmodule QuartoWeb.UserController do
     changeset = User.registration_changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
-      {:ok, _user} ->
+      {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
+        |> Guardian.Plug.sign_in(user)
         |> redirect(to: user_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)

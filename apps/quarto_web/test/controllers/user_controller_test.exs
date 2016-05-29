@@ -2,7 +2,7 @@ defmodule QuartoWeb.UserControllerTest do
   use QuartoWeb.ConnCase
 
   alias QuartoWeb.User
-  @valid_attrs %{email: "some content", username: "some content"}
+  @valid_attrs %{email: Faker.Internet.email, username: Faker.Internet.user_name}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
@@ -16,7 +16,7 @@ defmodule QuartoWeb.UserControllerTest do
   end
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @valid_attrs
+    conn = post conn, user_path(conn, :create), user: Map.put(@valid_attrs, :password, "some_secret_password")
     assert redirected_to(conn) == user_path(conn, :index)
     assert Repo.get_by(User, @valid_attrs)
   end

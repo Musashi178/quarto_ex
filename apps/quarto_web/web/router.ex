@@ -9,14 +9,24 @@ defmodule QuartoWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+    plug QuartoWeb.Auth
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", QuartoWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_auth]
 
     get "/", PageController, :index
+
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
 
     resources "/users", UserController
   end
