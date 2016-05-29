@@ -25,7 +25,8 @@ defmodule QuartoWeb.SessionController do
   end
 
   def delete(conn, _params) do
-    Guardian.Plug.sign_out(conn)
+    conn
+    |> Guardian.Plug.sign_out
     |> put_flash(:info, "Logged out successfully.")
     |> redirect(to: "/")
   end
