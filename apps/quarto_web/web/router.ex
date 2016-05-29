@@ -7,6 +7,9 @@ defmodule QuartoWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :browser_auth do
     plug Guardian.Plug.VerifySession
     plug Guardian.Plug.LoadResource
     plug QuartoWeb.Auth
@@ -19,11 +22,12 @@ defmodule QuartoWeb.Router do
   end
 
   scope "/", QuartoWeb do
-    pipe_through :browser
+    pipe_through [:browser, :browser_auth]
 
     get "/", PageController, :index
 
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+
     resources "/users", UserController
   end
 

@@ -1,7 +1,7 @@
 defmodule QuartoWeb.SessionController do
   use QuartoWeb.Web, :controller
 
-  alias QuartoWeb.User
+  alias QuartoWeb.{UserAuth, User}
 
 
   def new(conn, _params) do
@@ -9,14 +9,19 @@ defmodule QuartoWeb.SessionController do
   end
 
   def create(conn, %{"session" => %{"email_or_username" => email_or_username, "password" => password}}) do
-    verified_user = Repo.get_by(User, email: email_or_username) || Repo.get_by(User, username: email_or_username)
+    case UserAuth.authenticate(email_or_username, password) do
+      {:ok, verified_user} ->
+        conn
+        |> put_flash(:info, "Logged in.")
+        |> Guardian.Plug.sign_in(verified_user)
+        |> redirect(to: "/")
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Invalid username/password")
+        |> render "new.html"
+    end
 
-    IO.inspect (verified_user)
 
-    conn
-    |> put_flash(:info, "Logged in.")
-    |> Guardian.Plug.sign_in(verified_user)
-    |> redirect(to: "/")
   end
 
   def delete(conn, _params) do
