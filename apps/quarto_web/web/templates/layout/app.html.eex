@@ -16,10 +16,12 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-
+            <%= if @current_user do %>
+              <li><%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete, class: "btn btn-danger" %></li>
+            <% else %>
               <li><%= link "Register", to: user_path(@conn, :new) %></li>
               <li><%= link "Log in", to: session_path(@conn, :new) %></li>
-
+            <% end %>
           </ul>
         </nav>
         <span class="logo"></span>
