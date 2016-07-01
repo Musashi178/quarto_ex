@@ -12,7 +12,7 @@ defmodule QuartoWeb do
       supervisor(QuartoWeb.Repo, []),
       # Start the endpoint when the application starts
       supervisor(QuartoWeb.Endpoint, []),
-      # Here you could define other workers and supervisors as children
+      # Start your own worker by calling: QuartoWeb.Worker.start_link(arg1, arg2, arg3)
       # worker(QuartoWeb.Worker, [arg1, arg2, arg3]),
     ]
 

@@ -14,6 +14,7 @@ config :quarto_web, QuartoWeb.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../", __DIR__)]]
 
+
 # Watch static and templates for browser reloading.
 config :quarto_web, QuartoWeb.Endpoint,
   live_reload: [
@@ -28,9 +29,8 @@ config :quarto_web, QuartoWeb.Endpoint,
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
-# Set a higher stacktrace during development.
-# Do not configure such in production as keeping
-# and calculating stacktraces is usually expensive.
+# Set a higher stacktrace during development. Avoid configuring such
+# in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database

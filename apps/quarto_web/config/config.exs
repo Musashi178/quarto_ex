@@ -5,15 +5,15 @@
 # is restricted to this project.
 use Mix.Config
 
-# Configure ecto
+# General application configuration
 config :quarto_web,
   ecto_repos: [QuartoWeb.Repo]
 
 # Configures the endpoint
 config :quarto_web, QuartoWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "9VVUWjySm2NO1CKjCAtmUmu0OgKpGrUFn/xiC3n4XiwtOU5Pg5Lf4QOHpIacl7pT",
-  render_errors: [accepts: ~w(html json)],
+  secret_key_base: "tBizAqay3gEZ0S+gtBn/PpNQVePoSMhKvxaocm52wDlIDa2k9IHrUTuUG2CqjgBh",
+  render_errors: [view: QuartoWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: QuartoWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

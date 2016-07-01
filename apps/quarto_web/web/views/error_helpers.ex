@@ -9,8 +9,7 @@ defmodule QuartoWeb.ErrorHelpers do
   Generates tag for inlined form input errors.
   """
   def error_tag(form, field) do
-    error = form.errors[field]
-    if error do
+    if error = form.errors[field] do
       content_tag :span, translate_error(error), class: "help-block"
     end
   end
