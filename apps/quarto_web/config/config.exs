@@ -5,10 +5,13 @@
 # is restricted to this project.
 use Mix.Config
 
+# Configure ecto
+config :quarto_web,
+  ecto_repos: [QuartoWeb.Repo]
+
 # Configures the endpoint
 config :quarto_web, QuartoWeb.Endpoint,
   url: [host: "localhost"],
-  root: Path.dirname(__DIR__),
   secret_key_base: "9VVUWjySm2NO1CKjCAtmUmu0OgKpGrUFn/xiC3n4XiwtOU5Pg5Lf4QOHpIacl7pT",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: QuartoWeb.PubSub,

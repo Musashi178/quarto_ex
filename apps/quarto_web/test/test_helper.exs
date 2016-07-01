@@ -1,7 +1,5 @@
 ExUnit.start
 
-Mix.Task.run "ecto.create", ~w(-r QuartoWeb.Repo --quiet)
-Mix.Task.run "ecto.migrate", ~w(-r QuartoWeb.Repo --quiet)
-Ecto.Adapters.SQL.begin_test_transaction(QuartoWeb.Repo)
+Ecto.Adapters.SQL.Sandbox.mode(QuartoWeb.Repo, :manual)
 
 Faker.start
