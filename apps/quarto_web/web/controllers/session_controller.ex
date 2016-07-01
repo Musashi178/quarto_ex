@@ -14,7 +14,7 @@ defmodule QuartoWeb.SessionController do
         conn
         |> put_flash(:info, "Logged in.")
         |> Guardian.Plug.sign_in(verified_user)
-        |> redirect(to: "/")
+        |> redirect(to: user_dashboard_path(conn, :index, verified_user))
       {:error, _} ->
         conn
         |> put_flash(:error, "Invalid username/password")

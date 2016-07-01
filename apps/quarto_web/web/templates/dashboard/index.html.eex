@@ -1,0 +1,3 @@
+<h2>Dashboard</h2>
+
+<%= link "New Game", to: game_path(@conn, :new), class: "btn btn-default" %>

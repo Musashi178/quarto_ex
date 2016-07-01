@@ -2,6 +2,7 @@ defmodule QuartoWeb.Game do
   use QuartoWeb.Web, :model
 
   schema "game" do
+
     belongs_to :player_one, QuartoWeb.User
     belongs_to :player_two, QuartoWeb.User
 
@@ -21,4 +22,5 @@ defmodule QuartoWeb.Game do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
 end
