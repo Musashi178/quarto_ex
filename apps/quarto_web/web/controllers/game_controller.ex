@@ -1,7 +1,7 @@
 defmodule QuartoWeb.GameController do
   use QuartoWeb.Web, :controller
 
-  alias QuartoWeb.Game
+  alias QuartoWeb.{Game, User}
 
   plug :scrub_params, "game" when action in [:create, :update]
 
@@ -16,7 +16,10 @@ defmodule QuartoWeb.GameController do
   end
 
   def create(conn, %{"game" => game_params}) do
-    changeset = Game.changeset(%Game{}, game_params)
+    opponent_user = Repo.get_by(User, username: game_params["opponent"])
+    {player_one, player_two} = shuffle_players(conn.assigns.current_user, opponent_user)
+
+    changeset = Game.changeset(%Game{})
 
     case Repo.insert(changeset) do
       {:ok, _game} ->
@@ -63,5 +66,13 @@ defmodule QuartoWeb.GameController do
     conn
     |> put_flash(:info, "Game deleted successfully.")
     |> redirect(to: game_path(conn, :index))
+  end
+
+  defp shuffle_players(p_one, p_two) do
+    if :random.uniform() > 0.5 do
+      {p_one, p_two}
+    else
+      {p_two, p_one}
+    end
   end
 end
