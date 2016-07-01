@@ -48,7 +48,7 @@ defmodule QuartoWeb.Mixfile do
      {:guardian, "~> 0.10.0"}]
   end
 
-  # Aliases are shortcut or tasks specific to the current project.
+  # Aliases are shortcuts or tasks specific to the current project.
   # For example, to create, migrate and run the seeds file at once:
   #
   #     $ mix ecto.setup
