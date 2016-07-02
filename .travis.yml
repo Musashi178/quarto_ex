@@ -14,6 +14,11 @@ sudo: false # to use faster container based build environment
 env:
   - MIX_ENV=test
 
+before_script:
+  - mix deps.get --only test
+  - mix ecto.create --quiet
+  - mix ecto.migrate
+
 script: mix coveralls.travis --umbrella
 
 cache:
