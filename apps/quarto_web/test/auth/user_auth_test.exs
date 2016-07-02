@@ -3,7 +3,9 @@ defmodule QuartoWeb.UserAuthTest do
 
   alias QuartoWeb.{Repo, User, UserAuth}
 
-  setup_all do
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(QuartoWeb.Repo)
+
     password = "super_secret_password"
     user_params = %{username: Faker.Internet.user_name, email: Faker.Internet.email, password: password}
     changeset = User.registration_changeset(%User{}, user_params)

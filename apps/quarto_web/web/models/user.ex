@@ -13,10 +13,10 @@ defmodule QuartoWeb.User do
   end
 
   @doc """
-  Creates a changeset based on the `model` and `params`.
+  Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(model, params \\ %{}) do
-    model
+  def changeset(struct, params \\ %{}) do
+    struct
     |> cast(params, [:email, :username])
     |> validate_required([:email, :username])
     |> validate_format(:email, ~r/@/)
@@ -25,8 +25,8 @@ defmodule QuartoWeb.User do
     |> unique_constraint(:email)
   end
 
-  def registration_changeset(model, params) do
-    model
+  def registration_changeset(struct, params) do
+    struct
     |> changeset(params)
     |> cast(params, [:password])
     |> validate_required([:password])
