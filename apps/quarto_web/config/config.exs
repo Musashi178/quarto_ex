@@ -32,7 +32,7 @@ config :guardian, Guardian,
   allowed_algos: ["HS512"], # optional
   verify_module: Guardian.JWT,  # optional
   issuer: "QuartoWeb",
-  ttl: { 30, :days },
+  ttl: {30, :days},
   verify_issuer: true, # optional
   serializer: QuartoWeb.GuardianSerializer
 
