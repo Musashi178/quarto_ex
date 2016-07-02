@@ -1,27 +1,22 @@
 defmodule QuartoWeb.UserTest do
   use QuartoWeb.ModelCase
 
+  import QuartoWeb.Factory
+
   alias QuartoWeb.User
 
-  @valid_attrs %{password_hash: "some content", email: Faker.Internet.email, username: Faker.Internet.user_name}
-  @invalid_attrs %{}
-
-  setup do
-    {:ok, existing_user} = Repo.insert User.changeset(%User{}, @valid_attrs)
-    {:ok, existing_user: existing_user}
-  end
-
   test "changeset with valid attributes" do
-    changeset = User.changeset(%User{}, @valid_attrs)
+    changeset = User.changeset(%User{}, params_for(:user))
     assert changeset.valid?
   end
 
   test "changeset with invalid attributes" do
-    changeset = User.changeset(%User{}, @invalid_attrs)
+    changeset = User.changeset(%User{}, %{})
     refute changeset.valid?
   end
 
-  test "changeset with already used email address", %{existing_user: existing_user} do
+  test "changeset with already used email address" do
+    existing_user = insert(:user)
     new_user_params = existing_user
                         |> Map.from_struct
                         |> Map.delete(:id)
@@ -32,7 +27,8 @@ defmodule QuartoWeb.UserTest do
     refute changeset.valid?
   end
 
-  test "changeset with already used username", %{existing_user: existing_user} do
+  test "changeset with already used username" do
+    existing_user = insert(:user)
     new_user_params = existing_user
                         |> Map.from_struct
                         |> Map.delete(:id)
@@ -44,7 +40,7 @@ defmodule QuartoWeb.UserTest do
   end
 
   test "changeset with invalid email address" do
-    changeset = User.changeset(%User{}, %{@valid_attrs | email: "no valid email"})
+    changeset = User.changeset(%User{}, %{params_for(:user) | email: "no valid email"})
     refute changeset.valid?
   end
 end

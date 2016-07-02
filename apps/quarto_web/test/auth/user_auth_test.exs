@@ -1,16 +1,17 @@
 defmodule QuartoWeb.UserAuthTest do
   use ExUnit.Case, async: false
 
+  import QuartoWeb.Factory
+
   alias QuartoWeb.{Repo, User, UserAuth}
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(QuartoWeb.Repo)
 
-    password = "super_secret_password"
-    user_params = %{username: Faker.Internet.user_name, email: Faker.Internet.email, password: password}
+    user_params = params_for(:user_registration)
     changeset = User.registration_changeset(%User{}, user_params)
     {:ok, existing_user} = Repo.insert(changeset)
-    {:ok, existing_user: existing_user, password: password}
+    {:ok, existing_user: existing_user, password: user_params.password}
   end
 
   test "authenticate with non existing user_name fails" do
