@@ -22,8 +22,7 @@ defmodule QuartoWeb.Web do
 
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
-
+      import Ecto.Query
       @primary_key {:id, :binary_id, autogenerate: true}
       @foreign_key_type :binary_id
     end
@@ -35,7 +34,7 @@ defmodule QuartoWeb.Web do
 
       alias QuartoWeb.Repo
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
 
       import QuartoWeb.Router.Helpers
       import QuartoWeb.Gettext
@@ -70,7 +69,7 @@ defmodule QuartoWeb.Web do
 
       alias QuartoWeb.Repo
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
       import QuartoWeb.Gettext
     end
   end
