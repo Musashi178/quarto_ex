@@ -24,7 +24,7 @@ defmodule Quarto.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:credo, "~> 0.3", only: [:dev, :test]},
+      {:credo, "~> 0.4", only: [:dev, :test]},
       {:excoveralls, "~> 0.5", only: :test}
     ]
   end

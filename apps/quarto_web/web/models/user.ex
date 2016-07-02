@@ -12,28 +12,24 @@ defmodule QuartoWeb.User do
     timestamps
   end
 
-  @required_fields ~w(email username)
-  @optional_fields ~w()
-
   @doc """
-  Creates a changeset based on the `model` and `params`.
-
-  If no params are provided, an invalid changeset is returned
-  with no validation performed.
+  Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(model, params \\ :empty) do
-    model
-    |> cast(params, @required_fields, @optional_fields)
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:email, :username])
+    |> validate_required([:email, :username])
     |> validate_format(:email, ~r/@/)
     |> validate_length(:username, min: 3, max: 30)
     |> unique_constraint(:username)
     |> unique_constraint(:email)
   end
 
-  def registration_changeset(model, params) do
-    model
+  def registration_changeset(struct, params) do
+    struct
     |> changeset(params)
-    |> cast(params, ~w(password), [])
+    |> cast(params, [:password])
+    |> validate_required([:password])
     |> validate_length(:password, min: 6, max: 100)
     |> put_pass_hash
   end
