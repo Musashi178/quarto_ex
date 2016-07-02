@@ -8,7 +8,9 @@ otp_release:
 
 addons:
   postgresql: "9.4"
-  
+
+sudo: false # to use faster container based build environment
+
 env:
   - MIX_ENV=test
 
