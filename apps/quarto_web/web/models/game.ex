@@ -13,7 +13,10 @@ defmodule QuartoWeb.Game do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [])
-    |> validate_required([])
+    |> cast(params, [:player_one_id, :player_two_id])
+    |> cast_assoc(:player_one, required: true)
+    |> cast_assoc(:player_two, required: true)
+    |> assoc_constraint(:player_one)
+    |> assoc_constraint(:player_two)
   end
 end

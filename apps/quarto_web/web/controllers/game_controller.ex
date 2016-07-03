@@ -17,7 +17,10 @@ defmodule QuartoWeb.GameController do
     opponent_user = Repo.get_by(User, username: game_params["opponent"])
     {player_one, player_two} = shuffle_players(conn.assigns.current_user, opponent_user)
 
-    changeset = Game.changeset(%Game{})
+    changeset = %Game{}
+      |> Game.changeset()
+      |> Ecto.Changeset.put_assoc(:player_one, player_one)
+      |> Ecto.Changeset.put_assoc(:player_two, player_two)
 
     case Repo.insert(changeset) do
       {:ok, _game} ->
