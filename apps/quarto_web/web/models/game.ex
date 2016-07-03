@@ -17,8 +17,6 @@ defmodule QuartoWeb.Game do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:player_one, :player_two])
-    |> validate_required([:player_one, :player_two])
   end
 
 end
