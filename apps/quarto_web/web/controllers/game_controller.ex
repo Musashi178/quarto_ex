@@ -2,6 +2,7 @@ defmodule QuartoWeb.GameController do
   use QuartoWeb.Web, :controller
 
   alias QuartoWeb.{Game, User}
+  alias Ecto.Changeset
 
   def index(conn, _params) do
     games = Repo.all(Game)
@@ -18,9 +19,10 @@ defmodule QuartoWeb.GameController do
     {player_one, player_two} = shuffle_players(conn.assigns.current_user, opponent_user)
 
     changeset = %Game{}
-      |> Game.changeset()
-      |> Ecto.Changeset.put_assoc(:player_one, player_one)
-      |> Ecto.Changeset.put_assoc(:player_two, player_two)
+    |> Changeset.change()
+    |> Changeset.put_assoc(:player_one, player_one)
+    |> Changeset.put_assoc(:player_two, player_two)
+    |> Game.changeset
 
     case Repo.insert(changeset) do
       {:ok, _game} ->
