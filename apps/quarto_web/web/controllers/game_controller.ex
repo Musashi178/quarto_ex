@@ -3,8 +3,6 @@ defmodule QuartoWeb.GameController do
 
   alias QuartoWeb.{Game, User}
 
-  plug :scrub_params, "game" when action in [:create, :update]
-
   def index(conn, _params) do
     games = Repo.all(Game)
     render(conn, "index.html", games: games)

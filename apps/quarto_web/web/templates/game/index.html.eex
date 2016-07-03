@@ -3,6 +3,8 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Player one</th>
+      <th>Player two</th>
 
       <th></th>
     </tr>
@@ -10,6 +12,8 @@
   <tbody>
 <%= for game <- @games do %>
     <tr>
+      <td><%= game.player_one_id %></td>
+      <td><%= game.player_two_id %></td>
 
       <td class="text-right">
         <%= link "Show", to: game_path(@conn, :show, game), class: "btn btn-default btn-xs" %>
