@@ -4,8 +4,11 @@ defmodule QuartoWeb.GameController do
   alias QuartoWeb.{Game, User}
   alias Ecto.Changeset
 
-  def index(conn, _params) do
-    games = Repo.all(Game)
+  plug :scrub_params, "game" when action in [:create, :update]
+  plug Guardian.Plug.EnsureAuthenticated, handler: QuartoWeb.UnauthenticatedController
+
+  def index(conn, _params, _user) do
+    games = Repo.all(Game) |> Repo.preload [:player_one, :player_two]
     render(conn, "index.html", games: games)
   end
 

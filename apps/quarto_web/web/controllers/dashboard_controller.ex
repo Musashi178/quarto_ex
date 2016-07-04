@@ -4,6 +4,7 @@ defmodule QuartoWeb.DashboardController do
   alias QuartoWeb.{Dashboard, User, Game}
 
   plug :scrub_params, "dashboard" when action in [:create, :update]
+  plug Guardian.Plug.EnsureAuthenticated, handler: QuartoWeb.UnauthenticatedController
 
   def index(conn, %{"user_id" => user_id}) do
     user = Repo.get!(User, user_id)
