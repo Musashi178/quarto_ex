@@ -44,7 +44,7 @@ defmodule QuartoWeb.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.4"},
-     {:guardian, "~> 0.10.0"},
+     {:guardian, "~> 0.12.0"},
      {:faker, "~> 0.6", only: :test},
      {:ex_machina, "~> 1.0", only: :test}]
   end
