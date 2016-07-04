@@ -3,7 +3,6 @@ defmodule QuartoWeb.SessionController do
 
   alias QuartoWeb.{UserAuth, User}
 
-
   def new(conn, _params) do
     render conn, "new.html"
   end
@@ -28,6 +27,6 @@ defmodule QuartoWeb.SessionController do
     conn
     |> Guardian.Plug.sign_out
     |> put_flash(:info, "Logged out successfully.")
-    |> redirect(to: "/")
+    |> redirect(to: page_path(conn, :index))
   end
 end
