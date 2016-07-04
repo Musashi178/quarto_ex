@@ -14,6 +14,7 @@ defmodule QuartoWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  require Phoenix.ConnTest
 
   using do
     quote do
@@ -29,6 +30,19 @@ defmodule QuartoWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint QuartoWeb.Endpoint
+
+      # We need a way to get into the connection to login a user
+      # We need to use the bypass_through to fire the plugs in the router
+      # and get the session fetched.
+      def guardian_login(%Plug.Conn{} = conn, %QuartoWeb.User{} = user, token \\ :token, opts \\ []) do
+        conn
+          |> bypass_through(QuartoWeb.Router, [:browser])
+          |> get("/")
+          |> Guardian.Plug.sign_in(user, token, opts)
+          |> send_resp(200, "Flush the session")
+          |> recycle()
+      end
+
     end
   end
 
