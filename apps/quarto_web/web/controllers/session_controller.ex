@@ -3,7 +3,6 @@ defmodule QuartoWeb.SessionController do
 
   alias QuartoWeb.{UserAuth, User}
 
-
   def new(conn, _params) do
     render conn, "new.html"
   end
@@ -14,7 +13,7 @@ defmodule QuartoWeb.SessionController do
         conn
         |> put_flash(:info, "Logged in.")
         |> Guardian.Plug.sign_in(verified_user)
-        |> redirect(to: "/")
+        |> redirect(to: user_dashboard_path(conn, :index, verified_user))
       {:error, _} ->
         conn
         |> put_flash(:error, "Invalid username/password")
@@ -28,6 +27,6 @@ defmodule QuartoWeb.SessionController do
     conn
     |> Guardian.Plug.sign_out
     |> put_flash(:info, "Logged out successfully.")
-    |> redirect(to: "/")
+    |> redirect(to: page_path(conn, :index))
   end
 end

@@ -28,7 +28,10 @@ defmodule QuartoWeb.Router do
 
     resources "/sessions", SessionController, only: [:new, :create, :delete]
 
-    resources "/users", UserController
+    resources "/users", UserController do
+      resources "/dashboard", DashboardController, only: [:index]
+    end
+    resources "/games", GameController
   end
 
   # Other scopes may use custom stacks.

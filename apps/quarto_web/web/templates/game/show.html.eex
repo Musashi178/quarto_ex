@@ -1,0 +1,18 @@
+<h2>Show game</h2>
+
+<ul>
+
+  <li>
+    <strong>Player one:</strong>
+    <%= @game.player_one_id %>
+  </li>
+
+  <li>
+    <strong>Player two:</strong>
+    <%= @game.player_two_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: game_path(@conn, :edit, @game) %>
+<%= link "Back", to: game_path(@conn, :index) %>

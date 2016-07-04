@@ -4,6 +4,7 @@ defmodule QuartoWeb.UserController do
   alias QuartoWeb.User
 
   plug :scrub_params, "user" when action in [:create, :update]
+  plug Guardian.Plug.EnsureAuthenticated, [handler: QuartoWeb.UnauthenticatedController] when action in [:index, :show, :edit, :update, :delete]
 
   def index(conn, _params) do
     users = Repo.all(User)

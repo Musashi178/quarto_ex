@@ -9,3 +9,11 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias QuartoWeb.{Repo, User}
+
+pw = "password"
+for username <- ~w(player_one player_two player_three) do
+  Repo.get_by(User, username: username) ||
+    Repo.insert!(User.registration_changeset(%User{}, %{email: "#{username}@quarto.com", username: username, password: pw}))
+end
