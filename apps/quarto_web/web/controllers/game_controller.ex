@@ -12,14 +12,14 @@ defmodule QuartoWeb.GameController do
     render(conn, "index.html", games: games)
   end
 
-  def new(conn, _params) do
+  def new(conn, _params, _user) do
     changeset = Game.changeset(%Game{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"game" => game_params}) do
+  def create(conn, %{"game" => game_params}, user) do
     opponent_user = Repo.get_by(User, username: game_params["opponent"])
-    {player_one, player_two} = shuffle_players(conn.assigns.current_user, opponent_user)
+    {player_one, player_two} = shuffle_players(user, opponent_user)
 
     changeset = %Game{}
     |> Changeset.change()
@@ -37,18 +37,18 @@ defmodule QuartoWeb.GameController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => id}, _user) do
     game = Repo.get!(Game, id)
     render(conn, "show.html", game: game)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id}, _user) do
     game = Repo.get!(Game, id)
     changeset = Game.changeset(game)
     render(conn, "edit.html", game: game, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "game" => game_params}) do
+  def update(conn, %{"id" => id, "game" => game_params}, _user) do
     game = Repo.get!(Game, id)
     changeset = Game.changeset(game, game_params)
 
@@ -62,7 +62,7 @@ defmodule QuartoWeb.GameController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}, _user) do
     game = Repo.get!(Game, id)
 
     # Here we use delete! (with a bang) because we expect
@@ -80,5 +80,9 @@ defmodule QuartoWeb.GameController do
     else
       {p_two, p_one}
     end
+  end
+
+  def action(conn, _) do
+    apply(__MODULE__, action_name(conn), [conn, conn.params, conn.assigns.current_user])
   end
 end
