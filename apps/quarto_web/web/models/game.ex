@@ -19,4 +19,17 @@ defmodule QuartoWeb.Game do
     |> assoc_constraint(:player_one)
     |> assoc_constraint(:player_two)
   end
+
+  def for_user(query, %QuartoWeb.User{id: user_id}) do
+    from g in query,
+    where: g.player_one_id == ^user_id or g.player_two_id == ^user_id
+  end
+
+  def get_other_player(%QuartoWeb.Game{} = game, %QuartoWeb.User{id: user_id}) do
+    cond do
+      game.player_one_id == user_id -> {:ok, game.player_two}
+      game.player_two_id == user_id -> {:ok, game.player_one}
+      true -> {:error, "Player #{user_id} is not part of that game"}
+    end
+  end
 end
