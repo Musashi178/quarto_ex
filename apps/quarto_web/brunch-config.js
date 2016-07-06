@@ -54,6 +54,12 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
+    },
+    sass: {
+      allowCache: true,
+      options: {
+          includePaths: ['node_modules/bootstrap-sass/assets/stylesheets']
+      }
     }
   },
 
