@@ -8,7 +8,7 @@ defmodule QuartoWeb.GameController do
   plug Guardian.Plug.EnsureAuthenticated, handler: QuartoWeb.UnauthenticatedController
 
   def index(conn, _params, _user) do
-    games = Repo.all(Game) |> Repo.preload [:player_one, :player_two]
+    games = Game |> Repo.all |> Repo.preload [:player_one, :player_two]
     render(conn, "index.html", games: games)
   end
 
