@@ -43,9 +43,9 @@ defmodule QuartoWeb.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 2.4"},
-     {:guardian, "~> 0.12.0"},
-     {:faker, "~> 0.6", only: :test},
+     {:comeonin, "~> 2.6"},
+     {:guardian, "~> 0.13.0"},
+     {:faker, "~> 0.7", only: :test},
      {:ex_machina, "~> 1.0", only: :test}]
   end
 
