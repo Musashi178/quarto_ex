@@ -8,7 +8,7 @@ defmodule QuartoWeb.GameController do
   plug Guardian.Plug.EnsureAuthenticated, handler: QuartoWeb.UnauthenticatedController
 
   def index(conn, _params, _user) do
-    games = Game |> Repo.all |> Repo.preload [:player_one, :player_two]
+    games = Game |> Repo.all |> Repo.preload([:player_one, :player_two])
     render(conn, "index.html", games: games)
   end
 
@@ -75,7 +75,7 @@ defmodule QuartoWeb.GameController do
   end
 
   defp shuffle_players(p_one, p_two) do
-    if :random.uniform() > 0.5 do
+    if :rand.uniform() > 0.5 do
       {p_one, p_two}
     else
       {p_two, p_one}

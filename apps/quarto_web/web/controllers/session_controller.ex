@@ -17,7 +17,7 @@ defmodule QuartoWeb.SessionController do
       {:error, _} ->
         conn
         |> put_flash(:error, "Invalid username/password")
-        |> render "new.html"
+        |> render("new.html")
     end
 
 
