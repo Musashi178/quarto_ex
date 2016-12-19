@@ -4,6 +4,7 @@ defmodule QuartoWeb.Game do
   schema "games" do
     belongs_to :player_one, QuartoWeb.User
     belongs_to :player_two, QuartoWeb.User
+    embeds_many :moves, QuartoWeb.Game.Move
 
     timestamps()
   end
