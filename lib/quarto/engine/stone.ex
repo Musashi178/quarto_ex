@@ -1,10 +1,10 @@
-defmodule QuartoEngine.Stone do
+defmodule Quarto.Engine.Stone do
   @moduledoc """
   This module represents a stone in the Quarto game with it's four different attributes (size, color, shape, top)
   and also contains helper functions, e.g. computing all stones available in the game
   """
 
-  alias QuartoEngine.{Stone}
+  alias Quarto.Engine.{Stone}
 
 
   defstruct size: :small, color: :white, shape: :round, top: :flat
@@ -14,10 +14,10 @@ defmodule QuartoEngine.Stone do
 
   ## Examples
 
-    iex> QuartoEngine.Stone.get_all_stones() |> Enum.count
+    iex> Quarto.Engine.Stone.get_all_stones() |> Enum.count
     16
 
-    iex> QuartoEngine.Stone.get_all_stones() |> Enum.uniq |> Enum.count
+    iex> Quarto.Engine.Stone.get_all_stones() |> Enum.uniq |> Enum.count
     16
   """
   def get_all_stones do
@@ -32,10 +32,10 @@ defmodule QuartoEngine.Stone do
 
   ## Examples
 
-    iex> QuartoEngine.Stone.stone_to_string(%QuartoEngine.Stone{size: :small, color: :white, shape: :round, top: :flat})
+    iex> Quarto.Engine.Stone.stone_to_string(%Quarto.Engine.Stone{size: :small, color: :white, shape: :round, top: :flat})
     "swrf"
 
-    iex> QuartoEngine.Stone.stone_to_string(%QuartoEngine.Stone{size: :large, color: :black, shape: :square, top: :hole})
+    iex> Quarto.Engine.Stone.stone_to_string(%Quarto.Engine.Stone{size: :large, color: :black, shape: :square, top: :hole})
     "lbsh"
   """
   def stone_to_string(%Stone{size: size, color: color, shape: shape, top: top}) do
@@ -50,11 +50,11 @@ defmodule QuartoEngine.Stone do
 
   ## Examples
 
-    iex> QuartoEngine.Stone.string_to_stone("SWrf")
-    (%QuartoEngine.Stone{size: :small, color: :white, shape: :round, top: :flat})
+    iex> Quarto.Engine.Stone.string_to_stone("SWrf")
+    (%Quarto.Engine.Stone{size: :small, color: :white, shape: :round, top: :flat})
 
-    iex> QuartoEngine.Stone.string_to_stone("lbsh")
-    %QuartoEngine.Stone{size: :large, color: :black, shape: :square, top: :hole}
+    iex> Quarto.Engine.Stone.string_to_stone("lbsh")
+    %Quarto.Engine.Stone{size: :large, color: :black, shape: :square, top: :hole}
   """
   def string_to_stone(stone_string) when is_bitstring(stone_string) do
     lower_stone_string = String.downcase(stone_string)

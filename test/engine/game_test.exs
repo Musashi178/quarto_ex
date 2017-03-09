@@ -1,8 +1,8 @@
-defmodule QuartoEngineTest.Game do
+defmodule Quarto.Engine.Game.Test do
   use ExUnit.Case, async: true
-  doctest QuartoEngine.Game
+  doctest Quarto.Engine.Game
 
-  alias QuartoEngine.{Game, Stone, Board}
+  alias Quarto.Engine.{Game, Stone, Board}
 
   setup_all do
    stone_a = %Stone{size: :small, color: :white, shape: :round, top: :flat}
@@ -38,7 +38,7 @@ defmodule QuartoEngineTest.Game do
                       |> Game.select_stone(stone)
                       |> Game.place_stone({1,1})
 
-    assert_raise QuartoEngine.InvalidMoveError, fn ->
+    assert_raise Quarto.Engine.InvalidMoveError, fn ->
       Game.select_stone(test_game_state, stone)
     end
   end

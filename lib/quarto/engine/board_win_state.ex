@@ -1,4 +1,4 @@
-defmodule QuartoEngine.Board.WinState do
+defmodule Quarto.Engine.Board.WinState do
   @moduledoc """
   This module contains functions to check if the board has a win state or not.
 
@@ -12,7 +12,7 @@ defmodule QuartoEngine.Board.WinState do
   yet.
   """
 
-  alias QuartoEngine.{Board, Stone}
+  alias Quarto.Engine.{Board, Stone}
 
   def win_state?(board) do
     win_sets = Enum.concat([get_rows(board), get_columns(board), get_diagonals(board)])

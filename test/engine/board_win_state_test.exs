@@ -1,8 +1,8 @@
-defmodule QuartoEngineTest.Board.WinState do
+defmodule Quarto.Engine.Board.WinStateTest do
   use ExUnit.Case, async: true
-  doctest QuartoEngine.Board.WinState
+  doctest Quarto.Engine.Board.WinState
 
-  alias QuartoEngine.{Board, Stone, Board.WinState}
+  alias Quarto.Engine.{Board, Stone, Board.WinState}
 
   # "setup_all" is called once to setup the case before any test is run
   setup_all do
