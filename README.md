@@ -1,18 +1,20 @@
-# Quarto [![Build status](https://travis-ci.org/Musashi178/quarto_ex.svg?branch=master)](https://travis-ci.org/Musashi178/quarto_ex) [![Coverage Status](https://coveralls.io/repos/github/Musashi178/quarto_ex/badge.svg?branch=master)](https://coveralls.io/github/Musashi178/quarto_ex?branch=master)
+# Quarto
 
-# Setup environment
+To start your Phoenix server:
 
-Start a postgres db server
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+  * Install Node.js dependencies with `cd assets && npm install`
+  * Start Phoenix endpoint with `mix phx.server`
 
-Run the following in the folder apps/quarto_web
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-mix deps.get
-mix ecto.create
-mix ecto.migrate
+Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
-# Running web frontend
+## Learn more
 
-Run the following in the folder app/quarto_web
-mix phoenix.server
-
-You can the access the web frontend at http://localhost:4000
+  * Official website: http://www.phoenixframework.org/
+  * Guides: http://phoenixframework.org/docs/overview
+  * Docs: https://hexdocs.pm/phoenix
+  * Mailing list: http://groups.google.com/group/phoenix-talk
+  * Source: https://github.com/phoenixframework/phoenix
