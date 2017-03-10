@@ -23,6 +23,11 @@ defmodule Quarto.AccountsTest do
     assert Accounts.get_user!(user.id) == user
   end
 
+  test "get_user_by_email return the user with the given email" do
+    user = fixture(:user)
+    assert Accounts.get_user_by_email(user.email) == user
+  end
+
   test "create_user/1 with valid data creates a user" do
     assert {:ok, %User{} = user} = Accounts.create_user(@create_attrs)
 

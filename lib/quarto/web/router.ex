@@ -19,7 +19,10 @@ defmodule Quarto.Web.Router do
     get "/", PageController, :index
     resources "/users", UserController
 
+    get "/sessions/new", SessionsController, :new
+    post "/sessions/identity/callback", SessionsController, :identity_callback
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", Quarto.Web do

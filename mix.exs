@@ -20,7 +20,7 @@ defmodule Quarto.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Quarto.Application, []},
-     extra_applications: [:logger]]
+     extra_applications: [:logger, :ueberauth, :ueberauth_identity]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,6 +40,9 @@ defmodule Quarto.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:fsm, "~> 0.2.0"},
+     {:ueberauth, "~> 0.4"},
+     {:ueberauth_identity, "~> 0.2"},
+     {:comeonin, "~> 3.0"},
      {:credo, "~> 0.6", only: [:dev, :test]},
      {:excoveralls, "~> 0.6", only: :test}
 ]

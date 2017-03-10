@@ -1,4 +1,7 @@
 defmodule Quarto.Accounts do
+
+import Comeonin.Bcrypt
+
   @moduledoc """
   The boundary for the Accounts system.
   """
@@ -36,6 +39,11 @@ defmodule Quarto.Accounts do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  @doc """
+  Gets a single user by its email.
+  """
+  def get_user_by_email(email), do: Repo.get_by(User, email: email)
 
   @doc """
   Creates a user.
@@ -109,4 +117,19 @@ defmodule Quarto.Accounts do
     |> unique_constraint(:username)
     |> unique_constraint(:email)
   end
+
+  def authenticate_user(%Ueberauth.Auth{provider: :identity} = auth) do
+    auth.uid
+    |> get_user_by_email
+    |> authorize(auth)
+  end
+
+  defp authorize(nil, _auth), do: {:error, "Invalid username or password"}
+  defp authorize(user, auth) do
+    checkpw(auth.credentials.other.password, user.password_hash)
+    |> resolve_authorization(user)
+  end
+
+  defp resolve_authorization(false, _user), do: {:error, "Invalid username or password"}
+  defp resolve_authorization(true, user), do: {:ok, user}
 end
