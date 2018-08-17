@@ -3,12 +3,12 @@ defmodule Quarto.Web.UserControllerTest do
 
   alias Quarto.Accounts
 
-  @create_attrs %{email: "some email", password_hash: "some password_hash", username: "some username"}
-  @update_attrs %{email: "some updated email", password_hash: "some updated password_hash", username: "some updated username"}
-  @invalid_attrs %{email: nil, password_hash: nil, username: nil}
+  @register_user_attrs %{email: "some email", password: "some password", password_confirmation: "some password", username: "some username"}
+  @update_attrs %{email: "some updated email", username: "some updated username"}
+  @invalid_register_user_attrs %{email: nil, password: nil, password_confirmation: nil, username: nil}
 
   def fixture(:user) do
-    {:ok, user} = Accounts.create_user(@create_attrs)
+    {:ok, user} = Accounts.register_user(@register_user_attrs)
     user
   end
 
@@ -23,7 +23,7 @@ defmodule Quarto.Web.UserControllerTest do
   end
 
   test "creates user and redirects to show when data is valid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @create_attrs
+    conn = post conn, user_path(conn, :create), user: @register_user_attrs
 
     assert %{id: id} = redirected_params(conn)
     assert redirected_to(conn) == user_path(conn, :show, id)
@@ -33,7 +33,7 @@ defmodule Quarto.Web.UserControllerTest do
   end
 
   test "does not create user and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @invalid_attrs
+    conn = post conn, user_path(conn, :create), user: @invalid_register_user_attrs
     assert html_response(conn, 200) =~ "New User"
   end
 
@@ -54,7 +54,7 @@ defmodule Quarto.Web.UserControllerTest do
 
   test "does not update chosen user and renders errors when data is invalid", %{conn: conn} do
     user = fixture(:user)
-    conn = put conn, user_path(conn, :update, user), user: @invalid_attrs
+    conn = put conn, user_path(conn, :update, user), user: @invalid_register_user_attrs
     assert html_response(conn, 200) =~ "Edit User"
   end
 

@@ -17,3 +17,6 @@ config :quarto, Quarto.Repo,
   database: "quarto_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :guardian, Guardian,
+    secret_key: "DPUr#m(P/Jf}W0h9Kz;eei1@y/)Q)zpC%gn4SD=PrZZ9DbB:7!"

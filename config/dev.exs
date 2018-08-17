@@ -56,3 +56,6 @@ config :quarto, Quarto.Repo,
   database: "quarto_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :guardian, Guardian,
+      secret_key: "IWSvVHY/a1]lID_[cyub+ZMQg[M_NAnV4TDWA=D5k#rA3Lgv#s"

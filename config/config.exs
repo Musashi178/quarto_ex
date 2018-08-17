@@ -26,6 +26,17 @@ config :logger, :console,
 config :phoenix, :generators,
   binary_id: true
 
+
+# Configure the guardian auth
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "Quarto",
+  ttl: {30, :days},
+  verify_issuer: true, #
+  serializer: Quarto.Authorization.GuardianSerializer
+
+
 # Configure Ueberauth
 config :ueberauth, Ueberauth,
   providers: [

@@ -6,7 +6,7 @@ defmodule Quarto.Web.SessionsController do
   plug Ueberauth
 
   def new(conn, _params) do
-    render(conn, "new.html", callback_url: Helpers.callback_url(conn))
+    render(conn, "new.html", callback_url: Helpers.callback_url(conn), current_user: nil)
   end
 
   def identity_callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
@@ -17,7 +17,7 @@ defmodule Quarto.Web.SessionsController do
   defp authenticated(conn, {:ok, user}) do
     conn
     |> put_flash(:info, "Successfully authenticated.")
-    # |> Plug.put_session(:current_user, user)
+    |> Guardian.Plug.sign_in(user)
     |> redirect(to: "/")
   end
 
@@ -25,5 +25,12 @@ defmodule Quarto.Web.SessionsController do
     conn
     |> put_flash(:error, reason)
     |> redirect(to: "/sessions/new")
+  end
+
+  def logout(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Logged out")
+    |> redirect(to: "/")
   end
 end
